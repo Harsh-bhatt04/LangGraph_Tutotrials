@@ -98,7 +98,10 @@ if user_input:
             # Use stream_mode="messages" to get token chunks as they stream out
             for chunk, metadata in chatbot.stream(
                 {'message': [HumanMessage(content=user_input)]},
-                config={'configurable': {'thread_id': st.session_state['thread_id']}},
+                config={'configurable': {'thread_id': st.session_state['thread_id']},
+                        'metadata': {'thread_id': st.session_state['thread_id']},
+                        'run_name': 'Chat Run'
+                        },
                 stream_mode='messages'
             ):
                 # Ensure the token chunk comes from our chat node text generation
